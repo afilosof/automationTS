@@ -1,6 +1,16 @@
 class RegistrarionForm {
   minPasswordLength = 10;
-  validationEmail(email: string) {}
+  emailLengthVerification(email: string) {
+    if (email.length > 0) {
+      return true;
+    }
+  }
+
+  emailCharactersVerification(email: string) {
+    const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return validEmail.test(email);
+  }
+
   passwordLengthVerification(password: string) {
     if (password.length >= this.minPasswordLength) {
       return true;
@@ -8,13 +18,13 @@ class RegistrarionForm {
   }
 
   passwordAlphabeticVerification(password: string) {
-    const regExp = /^[a-zA-Z0-9!@#$%^&*]+$/;
-    return regExp.test(password);
+    const validPassword = /^[a-zA-Z0-9!@#$%^&*]+$/;
+    return validPassword.test(password);
   }
 
   passwordCharactersVerification(password: string) {
-    const regExp = /^(?=.*[0-9])(?=.*[!@#$%^&*]).*$/;
-    return regExp.test(password);
+    const validPassword = /^(?=.*[0-9])(?=.*[!@#$%^&*]).*$/;
+    return validPassword.test(password);
   }
 
   confirmPasswordVerification(password: string, confirmPassword: string) {
@@ -24,19 +34,25 @@ class RegistrarionForm {
   }
 
   formValidation(email: string, password: string, confirmPassword: string) {
-    if (this.passwordLengthVerification(password)) {
-      if (this.passwordAlphabeticVerification(password)) {
-        if (this.passwordCharactersVerification(password)) {
-          if (this.confirmPasswordVerification(password, confirmPassword)) {
-            return 'Registration is successful';
+    if (this.emailLengthVerification(email)) {
+      if (this.emailCharactersVerification(email)) {
+        if (this.passwordLengthVerification(password)) {
+          if (this.passwordAlphabeticVerification(password)) {
+            if (this.passwordCharactersVerification(password)) {
+              if (this.confirmPasswordVerification(password, confirmPassword)) {
+                return 'Registration is successful';
+              }
+              return 'Passwords do not match';
+            }
+            return 'Password must contain at least one number and a special symbol';
           }
-          return 'Passwords do not match';
+          return 'Password might contain only numbers, Latin alphabet characters, and special symbols';
         }
-        return 'Password must contain at least one number and a special symbol';
+        return 'Password should be longer than 10 characters';
       }
-      return 'Password might contain only numbers, Latin alphabet characters, and special symbols';
+      return 'Email is not valid';
     }
-    return 'Password should be longer than 10 characters';
+    return 'Email is empty';
   }
 }
 
