@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "unit:test": "mocha --config=unit/.mocharc.json"
+    "unit:test": "mocha --config=unit/.mocharc.json",
+    "api:test": "mocha --config=api/.mocharc.json"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,10 @@
     "@types/chai": "^4.3.3",
     "@types/mocha": "^10.0.0",
     "@types/node": "^18.8.2",
+    "@types/superagent": "^4.1.15",
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
+    "superagent": "^8.0.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   }
