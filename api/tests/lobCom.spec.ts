@@ -3,6 +3,7 @@ import * as superagent from 'superagent';
 import { KEY, BASE_URL } from '../utils/constants';
 import { errorHandler } from '../utils/helper';
 import { getRandomString } from '../utils/helper';
+import { Basic } from 'superagent-authorization';
 
 let response: any;
 let addressId: string;
@@ -20,7 +21,7 @@ const { name, address_line1, address_city, address_state, address_zip } = addres
 describe('Lob.com API tests', () => {
   it('Create a new address given information', async () => {
     try {
-      response = await superagent.post(`${BASE_URL}/v1/addresses`).set('Authorization', `Basic ${KEY}`).send({ name, address_line1, address_city, address_state, address_zip });
+      response = await superagent.post(`${BASE_URL}/v1/addresses`).use(Basic(KEY)).send({ name, address_line1, address_city, address_state, address_zip });
     } catch (err: any) {
       errorHandler(err);
     }
@@ -29,7 +30,7 @@ describe('Lob.com API tests', () => {
   });
   it('Retrieve the details of an existing address', async () => {
     try {
-      response = await superagent.get(`${BASE_URL}/v1/addresses/${addressId}`).set('Authorization', `Basic ${KEY}`);
+      response = await superagent.get(`${BASE_URL}/v1/addresses/${addressId}`).use(Basic(KEY));
     } catch (err: any) {
       errorHandler(err);
     }
@@ -37,7 +38,7 @@ describe('Lob.com API tests', () => {
   });
   it('Delete the details of an existing address', async () => {
     try {
-      response = await superagent.delete(`${BASE_URL}/v1/addresses/${addressId}`).set('Authorization', `Basic ${KEY}`);
+      response = await superagent.delete(`${BASE_URL}/v1/addresses/${addressId}`).use(Basic(KEY));
     } catch (err: any) {
       errorHandler(err);
     }
@@ -46,7 +47,7 @@ describe('Lob.com API tests', () => {
   });
   it('Return a list of all addresses', async () => {
     try {
-      response = await superagent.get(`${BASE_URL}/v1/addresses`).set('Authorization', `Basic ${KEY}`);
+      response = await superagent.get(`${BASE_URL}/v1/addresses`).use(Basic(KEY));
     } catch (err: any) {
       errorHandler(err);
     }
@@ -55,7 +56,7 @@ describe('Lob.com API tests', () => {
 
   it("Create a new address without the 'name' parameter", async () => {
     try {
-      response = await superagent.post(`${BASE_URL}/v1/addresses`).set('Authorization', `Basic ${KEY}`).send({ address_line1, address_city, address_state, address_zip });
+      response = await superagent.post(`${BASE_URL}/v1/addresses`).use(Basic(KEY)).send({ address_line1, address_city, address_state, address_zip });
     } catch (err: any) {
       expect(err.status, 'Status code is 422').to.eq(422);
       expect(JSON.parse(err.response.text).error.message, 'Check validation error message').to.eql('name or company is required');
@@ -63,7 +64,7 @@ describe('Lob.com API tests', () => {
   });
   it("Create a new address without the 'address_line1' parameter", async () => {
     try {
-      response = await superagent.post(`${BASE_URL}/v1/addresses`).set('Authorization', `Basic ${KEY}`).send({ name, address_city, address_state, address_zip });
+      response = await superagent.post(`${BASE_URL}/v1/addresses`).use(Basic(KEY)).send({ name, address_city, address_state, address_zip });
     } catch (err: any) {
       expect(err.status, 'Status code is 422').to.eq(422);
       expect(JSON.parse(err.response.text).error.message, 'Check validation error message').to.eql('address_line1 is required');
@@ -71,7 +72,7 @@ describe('Lob.com API tests', () => {
   });
   it('Retrieve the details of an unexisting address', async () => {
     try {
-      response = await superagent.get(`${BASE_URL}/v1/addresses/${randomAddressId}`).set('Authorization', `Basic ${KEY}`);
+      response = await superagent.get(`${BASE_URL}/v1/addresses/${randomAddressId}`).use(Basic(KEY));
     } catch (err: any) {
       expect(err.status, 'Status code is 404').to.eq(404);
       expect(JSON.parse(err.response.text).error.message, 'Check validation error message').to.eql('address not found');
