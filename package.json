@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "unit:test": "mocha --config=unit/.mocharc.json",
-    "api:test": "mocha --config=api/.mocharc.json"
+    "api:test": "mocha --config=api/.mocharc.json",
+    "ui:test": "npx cypress open --config-file=ui/cypress.config.ts"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@types/node": "^18.8.2",
     "@types/superagent": "^4.1.15",
     "chai": "^4.3.6",
+    "cypress": "^10.10.0",
     "mocha": "^10.0.0",
     "superagent": "^8.0.2",
     "superagent-authorization": "^1.0.1",
