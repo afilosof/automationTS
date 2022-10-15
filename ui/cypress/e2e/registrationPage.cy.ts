@@ -11,7 +11,7 @@ const randomEmail = getRandomString(7) + '@gmail.com';
 const randomPassword = getRandomString(10);
 const randomConfirmPassword = getRandomString(10);
 
-describe('Verify REVERSO Context Page', () => {
+describe('Verify REVERSO Registration Page', () => {
   beforeEach(() => {
     contextPage.openPage();
     contextPage.allowDataProcessing();
@@ -31,7 +31,7 @@ describe('Verify REVERSO Context Page', () => {
     registrationPage.verifyActivationLetterIsSent();
   });
 
-  it('Registration with invalid email', () => {
+  it('Registration with an invalid email', () => {
     registrationPage.fillEmail(randomConfirmPassword);
     registrationPage.fillPassword(randomPassword);
     registrationPage.fillConfirmPassword(randomPassword);
