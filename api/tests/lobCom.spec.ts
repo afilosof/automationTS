@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import * as superagent from 'superagent';
 import { KEY, BASE_URL } from '../utils/constants';
-import { errorHandler } from '../utils/helper';
-import { getRandomString } from '../utils/helper';
+import { errorHandler, getRandomString } from '../utils/helper';
 import { Basic } from 'superagent-authorization';
 
 let response: any;
