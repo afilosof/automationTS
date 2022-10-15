@@ -6,7 +6,7 @@
   "scripts": {
     "unit:test": "mocha --config=unit/.mocharc.json",
     "api:test": "mocha --config=api/.mocharc.json",
-    "ui:test": "npx cypress open --config-file=ui/cypress.config.ts"
+    "ui:test": "npx cypress run --browser chrome --config-file=ui/cypress.config.ts"
   },
   "repository": {
     "type": "git",
