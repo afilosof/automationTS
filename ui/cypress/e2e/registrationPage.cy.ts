@@ -1,4 +1,4 @@
-import { getRandomString } from '../support/helper';
+import { getRandomString } from '../../../utils/helper';
 import { ContextPage } from '../support/pageObject/contextPage';
 import { PageFactory } from '../support/pageObject/pageFactory';
 import { RegistrationPage } from '../support/pageObject/registrationPage';

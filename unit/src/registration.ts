@@ -28,9 +28,7 @@ class RegistrarionForm {
   }
 
   confirmPasswordVerification(password: string, confirmPassword: string) {
-    if (password === confirmPassword) {
-      return true;
-    }
+    return password === confirmPassword;
   }
 
   formValidation(email: string, password: string, confirmPassword: string) {

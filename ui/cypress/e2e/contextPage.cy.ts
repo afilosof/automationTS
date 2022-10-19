@@ -15,7 +15,7 @@ describe('Verify REVERSO Context Page', () => {
     contextPage.verifyPageTitle('Reverso Context | Translation in context');
   });
 
-  it(`Find GERMAN context`, () => {
+  it(`Find ${LANGUAGES.GERMAN} context`, () => {
     contextPage.switchLanguage(LANGUAGES.GERMAN);
     contextPage.verifyLanguageIsSelected(LANGUAGES.GERMAN);
     contextPage.fillContext(contextEN);
@@ -23,7 +23,7 @@ describe('Verify REVERSO Context Page', () => {
     contextPage.verifyContextIsFound(contextEN, LANGUAGES.GERMAN);
   });
 
-  it(`Find FRENCH context`, () => {
+  it(`Find ${LANGUAGES.FRENCH} context`, () => {
     contextPage.switchLanguage(LANGUAGES.FRENCH);
     contextPage.verifyLanguageIsSelected(LANGUAGES.FRENCH);
     contextPage.fillContext(contextEN);

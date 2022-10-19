@@ -1,7 +1,3 @@
-export function errorHandler(err: any) {
-  throw new Error('Error message: ' + err.message);
-}
-
 export function getRandomString(length: number) {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
